@@ -1,13 +1,11 @@
 export type DictionaryItem = {
-  id: string;
-  name: string;
-};
-
-export type DictionaryItemPayload = {
+  _id: string;
   name: string;
   translation: string;
   examples: string[];
 };
+
+export type DictionaryItemPayload = Omit<DictionaryItem, '_id'>;
 
 export const defaultDictionaryEntry = (): DictionaryItemPayload => ({
   name: '',

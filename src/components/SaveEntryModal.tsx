@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   IonContent,
   IonHeader,
@@ -15,12 +15,13 @@ import {
   IonItemOption,
 } from '@ionic/react';
 
-import { defaultDictionaryEntry } from '../domain/dictionary';
+import { defaultDictionaryEntry, DictionaryItem } from '../domain/dictionary';
 import InputField from './InputField';
 
-export type SaveWordModalProps = {
+export type SaveEntryModalProps = {
   open: boolean;
   create?: boolean;
+  entry?: DictionaryItem;
   onToggle: () => void;
   onSave: (data: FormState) => void;
 };
@@ -33,14 +34,23 @@ type FormState = {
 
 type InputFieldName = 'name' | 'translation';
 
-const SaveWordModal: React.FC<SaveWordModalProps> = ({
+const SaveEntryModal: React.FC<SaveEntryModalProps> = ({
   open,
   create,
+  entry,
   onToggle,
   onSave,
 }) => {
   const title = create ? 'Add a new entry' : 'Edit';
-  const [formData, setFormData] = useState<FormState>(defaultDictionaryEntry());
+  const [formData, setFormData] = useState<FormState>(
+    create ? defaultDictionaryEntry() : entry!
+  );
+
+  useEffect(() => {
+    if (!create) {
+      setFormData(entry!);
+    }
+  }, [entry]);
 
   const handleInputChange = (name: InputFieldName) => (value: string) => {
     setFormData({ ...formData, [name]: value });
@@ -120,4 +130,4 @@ const SaveWordModal: React.FC<SaveWordModalProps> = ({
   );
 };
 
-export default SaveWordModal;
+export default SaveEntryModal;
