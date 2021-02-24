@@ -1,10 +1,14 @@
+import { useEffect, useState } from 'react';
 import {
   IonButton,
   IonContent,
   IonHeader,
   IonPage,
+  IonSlide,
+  IonSlides,
   IonTitle,
   IonToolbar,
+  IonLoading,
 } from '@ionic/react';
 
 import './Homepage.css';
@@ -23,8 +27,10 @@ const Homepage: React.FC = () => {
             <IonTitle size="large">Word Keeper</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <div className="btn-generate-wrapper">
-          <IonButton size="large">Start Learning</IonButton>
+        <div className="container">
+          <IonButton size="large" href="/learn">
+            Start Learning
+          </IonButton>
         </div>
       </IonContent>
     </IonPage>

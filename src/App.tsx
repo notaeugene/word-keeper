@@ -14,6 +14,7 @@ import { schoolOutline, bookOutline, settingsOutline } from 'ionicons/icons';
 import Homepage from './pages/Homepage';
 import DictionaryPage from './pages/DictionaryPage';
 import SettingsPage from './pages/SettingsPage';
+import LearnPage from './pages/LearnPage';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -41,6 +42,9 @@ const App: React.FC = () => (
         <IonRouterOutlet>
           <Route exact path="/homepage">
             <Homepage />
+          </Route>
+          <Route exact path="/learn">
+            <LearnPage />
           </Route>
           <Route exact path="/dictionary">
             <DictionaryPage />
